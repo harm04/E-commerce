@@ -8,7 +8,7 @@ const authRouter = express.Router();
 //signup
 authRouter.post("/api/signup", async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { firstname,lastname, email, password } = req.body;
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res
@@ -19,7 +19,8 @@ authRouter.post("/api/signup", async (req, res) => {
     let user = new User({
       email,
       password: hashedPassword,
-      name,
+      firstname,
+      lastname
     });
     user = await user.save();
     res.json(user);
