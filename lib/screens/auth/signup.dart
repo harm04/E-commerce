@@ -13,7 +13,8 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  final TextEditingController nameController = TextEditingController();
+  final TextEditingController firstnameController = TextEditingController();
+    final TextEditingController lastnameController = TextEditingController();
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -25,7 +26,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
     super.dispose();
     emailController.dispose();
     passwordController.dispose();
-    nameController.dispose();
+    firstnameController.dispose();
+ lastnameController.dispose();
 
   }
 
@@ -34,7 +36,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
         context: context,
         email: emailController.text,
         password: passwordController.text,
-        name: nameController.text
+        firstname: firstnameController.text,
+        lastname: lastnameController.text
        );
   }
 
@@ -68,16 +71,33 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   height: 20,
                 ),
                 const Text(
-                  'Name',
+                  'First Name',
                   style: TextStyle(color: Colors.black, fontSize: 16),
                 ),
                 const SizedBox(
                   height: 5,
                 ),
                 CustomTextfield(
-                  controller: nameController,
+                   type: TextInputType.text,
+                  controller: firstnameController,
                   obsecureText: false,
-                  hintText: 'name',
+                  hintText: 'first name',
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                 const Text(
+                  'Last Name',
+                  style: TextStyle(color: Colors.black, fontSize: 16),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                CustomTextfield(
+                   type: TextInputType.text,
+                  controller: lastnameController,
+                  obsecureText: false,
+                  hintText: 'last name',
                 ),
                 const SizedBox(
                   height: 15,
@@ -94,6 +114,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   height: 5,
                 ),
                 CustomTextfield(
+                   type: TextInputType.emailAddress,
                   controller: emailController,
                   obsecureText: false,
                   hintText: 'email',
@@ -109,6 +130,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   height: 5,
                 ),
                 CustomTextfield(
+                   type: TextInputType.text,
                   controller: passwordController,
                   obsecureText: true,
                   hintText: 'password',

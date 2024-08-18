@@ -4,9 +4,11 @@ class CustomTextfield extends StatelessWidget {
   final String hintText;
   final TextEditingController controller;
   final bool obsecureText;
+  final TextInputType type;
   const CustomTextfield(
       {super.key,
       required this.hintText,
+      required this.type,
       required this.controller,
       required this.obsecureText});
 
@@ -14,6 +16,7 @@ class CustomTextfield extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
+      keyboardType: type,
       obscureText: obsecureText,
       decoration: InputDecoration(
         hintText: 'Enter your $hintText',

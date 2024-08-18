@@ -1,3 +1,4 @@
+import 'package:e_commerce/screens/auth/forgotPassword.dart';
 import 'package:e_commerce/screens/auth/signup.dart';
 import 'package:e_commerce/services/auth.dart';
 import 'package:e_commerce/widgets/customButtons.dart';
@@ -68,6 +69,7 @@ class _SigninScreenState extends State<SigninScreen> {
                   height: 5,
                 ),
                 CustomTextfield(
+                   type: TextInputType.emailAddress,
                   controller: emailController,
                   obsecureText: false,
                   hintText: 'email',
@@ -83,6 +85,7 @@ class _SigninScreenState extends State<SigninScreen> {
                   height: 5,
                 ),
                 CustomTextfield(
+                   type: TextInputType.text,
                   controller: passwordController,
                   obsecureText: true,
                   hintText: 'password',
@@ -101,10 +104,10 @@ class _SigninScreenState extends State<SigninScreen> {
                     ),
                     TextButton(
                       onPressed: () {
-                        // Navigator.push(context,
-                        //     MaterialPageRoute(builder: (context) {
-                        //   return const ForgotPasswordScreen();
-                        // }));
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return const ForgotPasswordScreen();
+                        }));
                       },
                       child: const Text(
                         'Reset password',

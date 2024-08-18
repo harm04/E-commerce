@@ -3,19 +3,22 @@ import 'dart:convert';
 class User {
   final String email;
   final String id;
-  final String name;
+  final String firstname;
+  final String lastname;
   final String password;
   final String token;
 
   User(
       {required this.email,
       required this.id,
-      required this.name,
+      required this.firstname,
+      required this.lastname,
       required this.password,
       required this.token});
   Map<String, dynamic> toMap() {
     return {
-      'name': name,
+      'firstname': firstname,
+      'lastname': lastname,
       'email': email,
       'token': token,
       'password': password,
@@ -25,7 +28,8 @@ class User {
   factory User.fromMap(Map<String, dynamic> map) {
     return User(
       id: map['_id'] ?? '',
-      name: map['name'] ?? '',
+      firstname: map['firstname'] ?? '',
+      lastname: map['lastname'] ?? '',
       email: map['email'] ?? '',
       token: map['token'] ?? '',
       password: map['password'] ?? '',
@@ -37,7 +41,8 @@ class User {
   factory User.fromJson(String source) => User.fromMap(json.decode(source));
   User copyWith({
     String? id,
-    String? name,
+    String? firstname,
+    String? lastname,
     String? email,
     String? password,
     String? token,
@@ -45,7 +50,8 @@ class User {
     return User(
         email: email ?? this.email,
         id: id ?? this.id,
-        name: name ?? this.name,
+        firstname: firstname ?? this.firstname,
+        lastname: lastname ?? this.lastname,
         password: password ?? this.password,
         token: token ?? this.token);
   }

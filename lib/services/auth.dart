@@ -18,12 +18,13 @@ class AuthServices {
     required BuildContext context,
     required String email,
     required String password,
-    required String name,
+    required String firstname,
+     required String lastname,
   }) async {
     try {
       final navigator = Navigator.of(context);
       User user =
-          User(email: email, id: '', name: name, password: password, token: '');
+          User(email: email, id: '', firstname: firstname,lastname: lastname, password: password, token: '');
       http.Response res = await http.post(
           Uri.parse('${Constatnts.uri}/api/signup'),
           body: user.toJson(),
@@ -40,7 +41,7 @@ class AuthServices {
           response: res,
           context: context,
           onSuccess: () {
-            showSnackbar('Account created successfully', context);
+            showSnackbar('Account created successfully. Please logn to continue', context);
           });
     } catch (err) {
       showSnackbar(err.toString(), context);

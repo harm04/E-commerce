@@ -94,6 +94,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
               height: 5,
             ),
             CustomTextfield(
+               type: TextInputType.text,
               controller: passwordController,
               obsecureText: true,
               hintText: 'password',
@@ -109,6 +110,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
               height: 5,
             ),
             CustomTextfield(
+               type: TextInputType.text,
               controller: confirmPasswordController,
               obsecureText: true,
               hintText: 'password',
