@@ -1,15 +1,13 @@
 import 'dart:convert';
-
 import 'package:e_commerce/models/user.dart';
 import 'package:e_commerce/provider/user.dart';
 import 'package:e_commerce/screens/auth/signin.dart';
-import 'package:e_commerce/screens/home.dart';
 import 'package:e_commerce/utils/constants.dart';
 import 'package:e_commerce/utils/httpErrorHandle.dart';
 import 'package:e_commerce/utils/snackbar.dart';
+import 'package:e_commerce/widgets/bottomBar.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -19,12 +17,17 @@ class AuthServices {
     required String email,
     required String password,
     required String firstname,
-     required String lastname,
+    required String lastname,
   }) async {
     try {
       final navigator = Navigator.of(context);
-      User user =
-          User(email: email, id: '', firstname: firstname,lastname: lastname, password: password, token: '');
+      User user = User(
+          email: email,
+          id: '',
+          firstname: firstname,
+          lastname: lastname,
+          password: password,
+          token: '');
       http.Response res = await http.post(
           Uri.parse('${Constatnts.uri}/api/signup'),
           body: user.toJson(),
@@ -41,7 +44,9 @@ class AuthServices {
           response: res,
           context: context,
           onSuccess: () {
-            showSnackbar('Account created successfully. Please logn to continue', context);
+            showSnackbar(
+                'Account created successfully. Please logn to continue',
+                context);
           });
     } catch (err) {
       showSnackbar(err.toString(), context);
@@ -75,7 +80,7 @@ class AuthServices {
           await prefs.setString('x-auth-token', jsonDecode(res.body)['token']);
           navigator.pushAndRemoveUntil(
             MaterialPageRoute(
-              builder: (context) => const HomeScreen(),
+              builder: (context) => const BottomBar(),
             ),
             (route) => false,
           );

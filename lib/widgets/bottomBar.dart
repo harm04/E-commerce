@@ -1,5 +1,5 @@
-
 import 'package:e_commerce/screens/home.dart';
+import 'package:e_commerce/screens/profile/profile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +18,7 @@ class _BottomBarState extends State<BottomBar> {
   List<Widget> pageList = [
     const HomeScreen(),
     const Text('home'),
-    const Text('home'),
+    const ProfileScreen()
   ];
 
   @override
@@ -47,6 +47,7 @@ class _BottomBarState extends State<BottomBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
+        physics: const NeverScrollableScrollPhysics(),
         controller: pageController,
         onPageChanged: onPageChanged,
         children: pageList,
