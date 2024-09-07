@@ -1,6 +1,6 @@
-import 'package:e_commerce/provider/user.dart';
-import 'package:e_commerce/screens/profile/myOrderScreen.dart';
-import 'package:e_commerce/services/auth.dart';
+import 'package:e_commerce/user/provider/user.dart';
+import 'package:e_commerce/user/screens/profile/myOrderScreen.dart';
+import 'package:e_commerce/user/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

@@ -1,11 +1,11 @@
 import 'dart:convert';
-import 'package:e_commerce/models/user.dart';
-import 'package:e_commerce/provider/user.dart';
-import 'package:e_commerce/screens/auth/signin.dart';
+import 'package:e_commerce/user/models/user.dart';
+import 'package:e_commerce/user/provider/user.dart';
+import 'package:e_commerce/user/screens/auth/signin.dart';
 import 'package:e_commerce/utils/constants.dart';
 import 'package:e_commerce/utils/httpErrorHandle.dart';
 import 'package:e_commerce/utils/snackbar.dart';
-import 'package:e_commerce/widgets/bottomBar.dart';
+import 'package:e_commerce/user/widgets/bottomBar.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';

@@ -1,4 +1,4 @@
-import 'package:e_commerce/widgets/productCard.dart';
+import 'package:e_commerce/user/widgets/productCard.dart';
 import 'package:flutter/material.dart';
 
 class MyOrderScreen extends StatefulWidget {

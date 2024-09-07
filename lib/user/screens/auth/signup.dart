@@ -1,35 +1,44 @@
-import 'package:e_commerce/screens/auth/forgotPassword.dart';
-import 'package:e_commerce/screens/auth/signup.dart';
-import 'package:e_commerce/services/auth.dart';
-import 'package:e_commerce/widgets/customButtons.dart';
-import 'package:e_commerce/widgets/customTextfield.dart';
+import 'package:e_commerce/user/screens/auth/signin.dart';
+import 'package:e_commerce/user/services/auth.dart';
+import 'package:e_commerce/user/widgets/customButtons.dart';
+import 'package:e_commerce/user/widgets/customTextfield.dart';
 import 'package:flutter/material.dart';
 
 
-class SigninScreen extends StatefulWidget {
-  const SigninScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
   @override
-  State<SigninScreen> createState() => _SigninScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _SigninScreenState extends State<SigninScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
+  final TextEditingController firstnameController = TextEditingController();
+    final TextEditingController lastnameController = TextEditingController();
+
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final loginFormKey = GlobalKey<FormState>();
+  final signUpFormKey = GlobalKey<FormState>();
   final AuthServices authService = AuthServices();
+
   @override
   void dispose() {
     super.dispose();
     emailController.dispose();
     passwordController.dispose();
+    firstnameController.dispose();
+ lastnameController.dispose();
+
   }
 
-  login() {
-    authService.signInUser(
+  signUpUser() {
+    authService.signUp(
         context: context,
         email: emailController.text,
-        password: passwordController.text);
+        password: passwordController.text,
+        firstname: firstnameController.text,
+        lastname: lastnameController.text
+       );
   }
 
   @override
@@ -40,7 +49,7 @@ class _SigninScreenState extends State<SigninScreen> {
         child: Padding(
           padding: const EdgeInsets.all(24.0),
           child: Form(
-            key: loginFormKey,
+            key: signUpFormKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -48,19 +57,55 @@ class _SigninScreenState extends State<SigninScreen> {
                   height: 10,
                 ),
                 const Text(
-                  'Login to your account',
+                  'Create an account',
                   style: TextStyle(
                       color: Colors.black,
                       fontSize: 32,
                       fontWeight: FontWeight.bold),
                 ),
                 const Text(
-                  'It\'s great to see you again',
+                  'Let\'s create your account',
                   style: TextStyle(color: Colors.grey),
                 ),
                 const SizedBox(
                   height: 20,
                 ),
+                const Text(
+                  'First Name',
+                  style: TextStyle(color: Colors.black, fontSize: 16),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                CustomTextfield(
+                   type: TextInputType.text,
+                  controller: firstnameController,
+                  obsecureText: false,
+                  hintText: 'first name',
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                 const Text(
+                  'Last Name',
+                  style: TextStyle(color: Colors.black, fontSize: 16),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                CustomTextfield(
+                   type: TextInputType.text,
+                  controller: lastnameController,
+                  obsecureText: false,
+                  hintText: 'last name',
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                
+                
+               
+               
                 const Text(
                   'Email',
                   style: TextStyle(color: Colors.black, fontSize: 16),
@@ -93,43 +138,37 @@ class _SigninScreenState extends State<SigninScreen> {
                 const SizedBox(
                   height: 15,
                 ),
-                Row(
-                  children: [
-                    const Text(
-                      'Forgot password?',
-                      style: const TextStyle(color: Colors.grey, fontSize: 16),
+                GestureDetector(
+                  child: RichText(
+                      text: const TextSpan(children: [
+                    TextSpan(
+                      text: 'By signing up you agree to our ',
+                      style: TextStyle(color: Colors.black, fontSize: 16),
                     ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return const ForgotPasswordScreen();
-                        }));
-                      },
-                      child: const Text(
-                        'Reset password',
+                    TextSpan(
+                        text: 'Terms, Privacy Policy and conditions',
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 16,
-                            decoration: TextDecoration.underline),
-                      ),
-                    ),
-                  ],
+                            fontWeight: FontWeight.bold,
+                            decoration: TextDecoration.underline))
+                  ])),
                 ),
                 const SizedBox(
                   height: 20,
                 ),
                 GestureDetector(
                   onTap: () async {
-                    if (loginFormKey.currentState!.validate()) {
-                      await login();
+                    if (signUpFormKey.currentState!.validate()) {
+                      await signUpUser();
+                      //  Navigator.pushReplacement(context,
+                      //     MaterialPageRoute(builder: (context) {
+                      //   return const MobileLayout();
+                      // }));
                     }
                   },
                   child: const CustomButton(
-                    buttonText: 'Login',
+                    buttonText: 'Create an account',
                     buttonColor: Colors.black,
                     textColor: Colors.white,
                   ),
@@ -165,7 +204,7 @@ class _SigninScreenState extends State<SigninScreen> {
                             width: 5,
                           ),
                           const Text(
-                            'Login with Google',
+                            'Sign up with Google',
                             style: const TextStyle(
                                 color: Colors.black, fontSize: 19),
                           )
@@ -181,24 +220,23 @@ class _SigninScreenState extends State<SigninScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
-                      'Don\'t have an account?',
+                      'Already have an account?',
                       style: TextStyle(color: Colors.grey, fontSize: 16),
                     ),
                     TextButton(
-                      onPressed: () {
-                        Navigator.pushReplacement(context,
-                            MaterialPageRoute(builder: (context) {
-                          return const SignUpScreen();
-                        }));
-                      },
-                      child: const Text(
-                        'Sign up',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                            decoration: TextDecoration.underline),
-                      ),
-                    )
+                        onPressed: () {
+                          Navigator.pushReplacement(context,
+                              MaterialPageRoute(builder: (context) {
+                            return SigninScreen();
+                          }));
+                        },
+                        child: const Text(
+                          'Log in',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 16,
+                              decoration: TextDecoration.underline),
+                        ))
                   ],
                 )
               ],

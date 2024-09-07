@@ -1,6 +1,7 @@
-import 'package:e_commerce/provider/user.dart';
-import 'package:e_commerce/services/auth.dart';
-import 'package:e_commerce/utils/categoryList.dart';
+import 'package:e_commerce/user/provider/user.dart';
+import 'package:e_commerce/user/widgets/crouselImages.dart';
+import 'package:e_commerce/user/widgets/dealOfDay.dart';
+import 'package:e_commerce/user/widgets/topCategories.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -9,10 +10,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void signOut() {
-      AuthServices().signOut(context);
-    }
-
     final user = Provider.of<UserProvider>(context).user;
     return Scaffold(
       appBar: PreferredSize(
@@ -103,45 +100,15 @@ class HomeScreen extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          SizedBox(
-            height: 60,
-            child: ListView.builder(
-              itemCount: Categories.categoryImages.length,
-              scrollDirection: Axis.horizontal,
-              itemExtent: 90,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () {},
-                  child: Column(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(50),
-                          child: Image.asset(
-                            Categories.categoryImages[index]['image']!,
-                            fit: BoxFit.cover,
-                            height: 40,
-                            width: 40,
-                          ),
-                        ),
-                      ),
-                      Text(
-                        Categories.categoryImages[index]['title']!,
-                        style: const TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ],
-                  ),
-                );
-              },
-            ),
-          ),
+          const TopCaregories(),
           const SizedBox(
             height: 10,
           ),
+          const CrouselImages(),
+          const SizedBox(
+            height: 10,
+          ),
+          DealOfDay(),
           Text(user.toJson().toString()),
         ],
       ),
