@@ -1,8 +1,8 @@
 import 'package:e_commerce/user/screens/auth/forgotPassword.dart';
 import 'package:e_commerce/user/screens/auth/signup.dart';
 import 'package:e_commerce/user/services/auth.dart';
-import 'package:e_commerce/user/widgets/customButtons.dart';
-import 'package:e_commerce/user/widgets/customTextfield.dart';
+import 'package:e_commerce/widgets/customButtons.dart';
+import 'package:e_commerce/widgets/customTextfield.dart';
 import 'package:flutter/material.dart';
 
 

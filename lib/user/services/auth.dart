@@ -5,7 +5,7 @@ import 'package:e_commerce/user/screens/auth/signin.dart';
 import 'package:e_commerce/utils/constants.dart';
 import 'package:e_commerce/utils/httpErrorHandle.dart';
 import 'package:e_commerce/utils/snackbar.dart';
-import 'package:e_commerce/user/widgets/bottomBar.dart';
+import 'package:e_commerce/widgets/bottomBar.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
@@ -27,7 +27,10 @@ class AuthServices {
           firstname: firstname,
           lastname: lastname,
           password: password,
-          token: '');
+          token: '',
+          type: '',
+          address: '',
+          );
       http.Response res = await http.post(
           Uri.parse('${Constatnts.uri}/api/signup'),
           body: user.toJson(),

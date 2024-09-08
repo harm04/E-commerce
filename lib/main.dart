@@ -1,7 +1,8 @@
+import 'package:e_commerce/widgets/adminBottomBar.dart';
 import 'package:e_commerce/user/provider/user.dart';
 import 'package:e_commerce/user/screens/auth/signin.dart';
 import 'package:e_commerce/user/services/auth.dart';
-import 'package:e_commerce/user/widgets/bottomBar.dart';
+import 'package:e_commerce/widgets/bottomBar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -43,8 +44,8 @@ class _MyAppState extends State<MyApp> {
               iconTheme: IconThemeData(color: Colors.white),
               titleTextStyle: TextStyle(color: Colors.white))),
       home: Provider.of<UserProvider>(context).user.token.isNotEmpty
-          ? const BottomBar()
-          : const SigninScreen(),
+          ?Provider.of<UserProvider>(context).user.type=='user'? const BottomBar()
+          :const AdminBottomBAr(): const SigninScreen(),
     );
   }
 }

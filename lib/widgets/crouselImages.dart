@@ -1,5 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:e_commerce/user/widgets/globalVarialbles.dart';
+import 'package:e_commerce/widgets/globalVarialbles.dart';
 import 'package:flutter/material.dart';
 
 class CrouselImages extends StatelessWidget {
@@ -14,10 +14,9 @@ class CrouselImages extends StatelessWidget {
               i,
               fit: BoxFit.cover,
               height: 200,
-            
             );
           });
         }).toList(),
-        options: CarouselOptions(viewportFraction: 1,height: 200));
+        options: CarouselOptions(viewportFraction: 1, height: 200));
   }
 }

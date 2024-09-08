@@ -1,7 +1,7 @@
 import 'package:e_commerce/user/provider/user.dart';
-import 'package:e_commerce/user/widgets/crouselImages.dart';
-import 'package:e_commerce/user/widgets/dealOfDay.dart';
-import 'package:e_commerce/user/widgets/topCategories.dart';
+import 'package:e_commerce/widgets/crouselImages.dart';
+import 'package:e_commerce/widgets/dealOfDay.dart';
+import 'package:e_commerce/widgets/topCategories.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

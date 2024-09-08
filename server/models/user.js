@@ -16,6 +16,15 @@ const userSchema = mongoose.Schema({
       message: "Please enter a valid email",
     },
   },
+  address: {
+    type: String,
+    default: "",
+  },
+  type: {
+    type: String,
+    default: "user",
+  },
+  
   password:{
     required:true,
     type:String,    

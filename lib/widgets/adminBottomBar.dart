@@ -1,24 +1,22 @@
-import 'package:e_commerce/user/screens/home.dart';
-import 'package:e_commerce/user/screens/profile/profile.dart';
+import 'package:e_commerce/admin/screens/adminHome.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class BottomBar extends StatefulWidget {
-  const BottomBar({super.key});
+class AdminBottomBAr extends StatefulWidget {
+  const AdminBottomBAr({super.key});
 
   @override
-  State<BottomBar> createState() => _BottomBarState();
+  State<AdminBottomBAr> createState() => _AdminBottomBArState();
 }
 
-class _BottomBarState extends State<BottomBar> {
-  String username = "";
+class _AdminBottomBArState extends State<AdminBottomBAr> {
   int _page = 0;
   late PageController pageController;
 
   List<Widget> pageList = [
-    const HomeScreen(),
-    const Text('home'),
-    const ProfileScreen()
+    const AdminHome(),
+    const Center(child: Text('3')),
+    const Center(child: Text('2')),
   ];
 
   @override
@@ -74,7 +72,7 @@ class _BottomBarState extends State<BottomBar> {
                   BottomNavigationBarItem(
                     icon: ImageIcon(
                       const AssetImage('assets/icons/ic_home.png'),
-                      size: 40,
+                      size: 25,
                       color: (_page == 0) ? Colors.white : Colors.grey,
                     ),
                     label: 'Home',
@@ -82,19 +80,19 @@ class _BottomBarState extends State<BottomBar> {
                   ),
                   BottomNavigationBarItem(
                       icon: ImageIcon(
-                        const AssetImage('assets/icons/ic_cart.png'),
-                        size: 40,
+                        const AssetImage('assets/icons/ic_analytics.png'),
+                        size: 25,
                         color: (_page == 1) ? Colors.white : Colors.grey,
                       ),
-                      label: 'Cart',
+                      label: 'Analytics',
                       backgroundColor: Colors.white),
                   BottomNavigationBarItem(
                     icon: ImageIcon(
-                      const AssetImage('assets/icons/ic_profile.png'),
-                      size: 20,
+                      const AssetImage('assets/icons/ic_inbox.png'),
+                      size: 25,
                       color: (_page == 2) ? Colors.white : Colors.grey,
                     ),
-                    label: 'Profile',
+                    label: 'Inbox',
                     backgroundColor: Colors.white,
                   ),
                 ],

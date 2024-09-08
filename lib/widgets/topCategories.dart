@@ -1,4 +1,4 @@
-import 'package:e_commerce/user/widgets/globalVarialbles.dart';
+import 'package:e_commerce/widgets/globalVarialbles.dart';
 import 'package:flutter/material.dart';
 
 class TopCaregories extends StatelessWidget {

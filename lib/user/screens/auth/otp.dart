@@ -1,5 +1,5 @@
 import 'package:e_commerce/user/screens/auth/ResetPassword.dart';
-import 'package:e_commerce/user/widgets/customButtons.dart';
+import 'package:e_commerce/widgets/customButtons.dart';
 import 'package:flutter/material.dart';
 
 class OtpScreen extends StatefulWidget {
