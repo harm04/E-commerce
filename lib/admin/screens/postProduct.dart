@@ -148,6 +148,7 @@ class _PostProductState extends State<PostProduct> {
                             hintText: 'Product Name',
                             type: TextInputType.text,
                             controller: productcontroller,
+                            maxlines: 3,
                             obsecureText: false),
                         const SizedBox(
                           height: 10,
@@ -164,7 +165,7 @@ class _PostProductState extends State<PostProduct> {
                         ),
                         CustomTextfield(
                             hintText: 'Product Price',
-                            type: TextInputType.text,
+                            type: TextInputType.number,
                             controller: pricecontroller,
                             obsecureText: false),
                         const SizedBox(

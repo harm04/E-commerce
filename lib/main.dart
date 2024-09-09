@@ -6,7 +6,7 @@ import 'package:e_commerce/widgets/bottomBar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-//4:26:48
+//7:50:29
 void main() {
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(
@@ -30,7 +30,7 @@ class _MyAppState extends State<MyApp> {
     authServices.getUserData(context);
   }
 
-  @override
+  @override 
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,

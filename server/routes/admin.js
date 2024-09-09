@@ -1,4 +1,3 @@
-
 const express = require("express");
 const adminRouter = express.Router();
 const admin = require("../middleware/admin");
@@ -23,7 +22,6 @@ adminRouter.post("/admin/add-product", admin, async (req, res) => {
   }
 });
 
-
 //get products
 adminRouter.get("/admin/get-products", admin, async (req, res) => {
   try {
@@ -34,7 +32,15 @@ adminRouter.get("/admin/get-products", admin, async (req, res) => {
   }
 });
 
-
-
+//delete products
+adminRouter.post("/admin/delete-products", admin, async (req, res) => {
+  try {
+    const { id } = req.body;
+    let product = await Product.findByIdAndDelete(id);
+    res.json(product);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
 
 module.exports = adminRouter;

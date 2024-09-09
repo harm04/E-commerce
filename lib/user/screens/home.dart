@@ -1,12 +1,31 @@
 import 'package:e_commerce/user/provider/user.dart';
+import 'package:e_commerce/user/screens/searchScreen.dart';
 import 'package:e_commerce/widgets/crouselImages.dart';
 import 'package:e_commerce/widgets/dealOfDay.dart';
 import 'package:e_commerce/widgets/topCategories.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  TextEditingController searchcontroller = TextEditingController();
+  @override
+  void dispose() {
+    super.dispose();
+    searchcontroller.dispose();
+  }
+
+  navigateToSearchScreen(String search) {
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return SearchScreen(searchQuery: search);
+    }));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +37,10 @@ class HomeScreen extends StatelessWidget {
             flexibleSpace: Container(
               color: Colors.black,
             ),
-            title: TextField(
+            title: TextFormField(
+           
+               
+              onFieldSubmitted: navigateToSearchScreen,
               decoration: InputDecoration(
                   fillColor: Colors.white,
                   filled: true,

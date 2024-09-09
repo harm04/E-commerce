@@ -1,4 +1,4 @@
-import 'package:e_commerce/user/models/user.dart';
+import 'package:e_commerce/models/user.dart';
 import 'package:flutter/cupertino.dart';
 
 class UserProvider extends ChangeNotifier {

@@ -1,3 +1,4 @@
+import 'package:e_commerce/user/screens/categoryDeals.dart';
 import 'package:e_commerce/widgets/globalVarialbles.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,12 @@ class TopCaregories extends StatelessWidget {
         itemExtent: 90,
         itemBuilder: (context, index) {
           return GestureDetector(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return CategoryDeals(
+                    category: GlobalVariables.categoryImages[index]['title']!);
+              }));
+            },
             child: Column(
               children: [
                 Container(

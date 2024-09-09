@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:e_commerce/user/models/user.dart';
+import 'package:e_commerce/models/user.dart';
 import 'package:e_commerce/user/provider/user.dart';
 import 'package:e_commerce/user/screens/auth/signin.dart';
 import 'package:e_commerce/utils/constants.dart';
