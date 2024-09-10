@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 class User {
@@ -9,6 +10,7 @@ class User {
   final String token;
   final String type;
   final String address;
+  final List<dynamic> cart;
 
   User(
       {required this.type,
@@ -18,7 +20,8 @@ class User {
       required this.firstname,
       required this.lastname,
       required this.password,
-      required this.token});
+      required this.token,
+      required this.cart});
   Map<String, dynamic> toMap() {
     return {
       'firstname': firstname,
@@ -28,6 +31,7 @@ class User {
       'password': password,
       'type': type,
       'address': address,
+      'cart': cart
     };
   }
 
@@ -41,6 +45,8 @@ class User {
       password: map['password'] ?? '',
       type: map['type'] ?? '',
       address: map['address'] ?? '',
+      cart: List<Map<String, dynamic>>.from(
+          map['cart']?.map((x) => Map<String, dynamic>.from(x))),
     );
   }
 
@@ -48,23 +54,26 @@ class User {
 
   factory User.fromJson(String source) => User.fromMap(json.decode(source));
   User copyWith({
+    String? email,
     String? id,
     String? firstname,
     String? lastname,
-    String? email,
     String? password,
     String? token,
     String? type,
     String? address,
+    List<dynamic>? cart,
   }) {
     return User(
-        email: email ?? this.email,
-        type: type ?? this.type,
-        address: address ?? this.address,
-        id: id ?? this.id,
-        firstname: firstname ?? this.firstname,
-        lastname: lastname ?? this.lastname,
-        password: password ?? this.password,
-        token: token ?? this.token);
+      email:email ?? this.email,
+      id:id ?? this.id,
+      firstname:firstname ?? this.firstname,
+      lastname:lastname ?? this.lastname,
+      password :password?? this.password,
+      token:token ?? this.token,
+      type:type ?? this.type,
+      address:address ?? this.address,
+      cart:cart ?? this.cart,
+    );
   }
 }

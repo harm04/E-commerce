@@ -1,7 +1,10 @@
+import 'package:e_commerce/user/provider/user.dart';
+import 'package:e_commerce/user/screens/cart.dart';
 import 'package:e_commerce/user/screens/home.dart';
 import 'package:e_commerce/user/screens/profile/profile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class BottomBar extends StatefulWidget {
   const BottomBar({super.key});
@@ -11,13 +14,12 @@ class BottomBar extends StatefulWidget {
 }
 
 class _BottomBarState extends State<BottomBar> {
-
   int _page = 0;
   late PageController pageController;
 
   List<Widget> pageList = [
     const HomeScreen(),
-    const Text('home'),
+    const Cart(),
     const ProfileScreen()
   ];
 
@@ -45,6 +47,8 @@ class _BottomBarState extends State<BottomBar> {
 
   @override
   Widget build(BuildContext context) {
+    final userCartLen = context.watch<UserProvider>().user.cart.length;
+    print('cart: $userCartLen');
     return Scaffold(
       body: PageView(
         physics: const NeverScrollableScrollPhysics(),

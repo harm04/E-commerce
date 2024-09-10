@@ -32,9 +32,14 @@ class _ProductDetailsState extends State<ProductDetails> {
         myRating = widget.product.rating![i].rating;
       }
     }
-    if(totleRating!=0){
-      avgRating=totleRating/widget.product.rating!.length;
+    if (totleRating != 0) {
+      avgRating = totleRating / widget.product.rating!.length;
     }
+  }
+
+  addToCart() {
+    productDetailsServices.addtoCart(context: context, product: widget.product);
+    setState(() {});
   }
 
   @override
@@ -69,7 +74,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                       widget.product.id!,
                       style: const TextStyle(color: Colors.black, fontSize: 17),
                     ),
-                     Stars(rating: avgRating)
+                    Stars(rating: avgRating)
                   ],
                 ),
               ),
@@ -144,19 +149,25 @@ class _ProductDetailsState extends State<ProductDetails> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Card(
-                    child: Container(
-                      height: 60,
-                      width: 180,
-                      decoration: BoxDecoration(
-                          color: const Color.fromARGB(255, 243, 243, 243),
-                          borderRadius: BorderRadius.circular(10)),
-                      child: const Center(
-                        child: Padding(
-                          padding: EdgeInsets.all(15.0),
-                          child: Text(
-                            'Add to cart',
-                            style: TextStyle(color: Colors.black, fontSize: 20),
+                  GestureDetector(
+                    onTap: () {
+                      addToCart();
+                    },
+                    child: Card(
+                      child: Container(
+                        height: 60,
+                        width: 180,
+                        decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 243, 243, 243),
+                            borderRadius: BorderRadius.circular(10)),
+                        child: const Center(
+                          child: Padding(
+                            padding: EdgeInsets.all(15.0),
+                            child: Text(
+                              'Add to cart',
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 20),
+                            ),
                           ),
                         ),
                       ),
@@ -203,7 +214,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                   allowHalfRating: true,
                   itemBuilder: (context, _) => const Icon(
                         Icons.star,
-                        color:  Color.fromARGB(255, 255, 196, 4),
+                        color: Color.fromARGB(255, 255, 196, 4),
                       ),
                   onRatingUpdate: (rating) {
                     productDetailsServices.rateProduct(

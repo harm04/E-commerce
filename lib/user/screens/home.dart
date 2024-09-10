@@ -14,12 +14,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  TextEditingController searchcontroller = TextEditingController();
-  @override
-  void dispose() {
-    super.dispose();
-    searchcontroller.dispose();
-  }
+  
 
   navigateToSearchScreen(String search) {
     Navigator.push(context, MaterialPageRoute(builder: (context) {

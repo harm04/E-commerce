@@ -3,6 +3,7 @@ const express = require("express");
 const authRouter = require("./routes/auth");
 const adminRouter = require("./routes/admin");
 const productRouter = require("./routes/product");
+const userRouter = require("./routes/user");
 
 // const PORT = process.env.PORT || 3000;
 const PORT = 3000;
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use(authRouter);
 app.use(adminRouter);
 app.use(productRouter);
+app.use(userRouter);
 const DB =
   "mongodb+srv://harsh:test123@e-commerce.yvgrz.mongodb.net/?retryWrites=true&w=majority&appName=E-commerce";
 mongoose
