@@ -16,6 +16,7 @@ class ProductDetails extends StatefulWidget {
 }
 
 class _ProductDetailsState extends State<ProductDetails> {
+  
   final ProductDetailsServices productDetailsServices =
       ProductDetailsServices();
   double avgRating = 0;
@@ -37,6 +38,7 @@ class _ProductDetailsState extends State<ProductDetails> {
     }
   }
 
+
   addToCart() {
     productDetailsServices.addtoCart(context: context, product: widget.product);
     setState(() {});
@@ -44,6 +46,7 @@ class _ProductDetailsState extends State<ProductDetails> {
 
   @override
   Widget build(BuildContext context) {
+  
     return Scaffold(
       appBar: PreferredSize(
           preferredSize: const Size.fromHeight(70),
@@ -146,52 +149,29 @@ class _ProductDetailsState extends State<ProductDetails> {
               const SizedBox(
                 height: 20,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      addToCart();
-                    },
-                    child: Card(
-                      child: Container(
-                        height: 60,
-                        width: 180,
-                        decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 243, 243, 243),
-                            borderRadius: BorderRadius.circular(10)),
-                        child: const Center(
-                          child: Padding(
-                            padding: EdgeInsets.all(15.0),
-                            child: Text(
-                              'Add to cart',
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 20),
-                            ),
-                          ),
+              GestureDetector(
+                onTap: () {
+                  addToCart();
+                },
+                child: Card(
+                  child: Container(
+                    height: 60,
+                    // width: 180,
+                    decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 243, 243, 243),
+                        borderRadius: BorderRadius.circular(10)),
+                    child: const Center(
+                      child: Padding(
+                        padding: EdgeInsets.all(15.0),
+                        child: Text(
+                          'Add to cart',
+                          style:
+                              TextStyle(color: Colors.black, fontSize: 20),
                         ),
                       ),
                     ),
                   ),
-                  Card(
-                    child: Container(
-                      height: 60,
-                      width: 180,
-                      decoration: BoxDecoration(
-                          color: Colors.black,
-                          borderRadius: BorderRadius.circular(10)),
-                      child: const Center(
-                        child: Padding(
-                          padding: EdgeInsets.all(15.0),
-                          child: Text(
-                            'Buy now',
-                            style: TextStyle(color: Colors.white, fontSize: 20),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
               const SizedBox(
                 height: 20,

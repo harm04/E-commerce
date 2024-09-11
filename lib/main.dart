@@ -6,7 +6,7 @@ import 'package:e_commerce/widgets/bottomBar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-//7:50:29
+//10:36:00
 void main() {
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(

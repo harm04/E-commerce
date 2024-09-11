@@ -2,7 +2,6 @@ import 'package:e_commerce/models/product.dart';
 import 'package:e_commerce/user/screens/productDetails.dart';
 import 'package:e_commerce/user/services/homeServices.dart';
 import 'package:e_commerce/widgets/loader.dart';
-import 'package:e_commerce/widgets/searchProductCard.dart';
 import 'package:flutter/material.dart';
 
 class DealOfDay extends StatefulWidget {

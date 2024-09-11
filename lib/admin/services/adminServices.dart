@@ -3,6 +3,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:cloudinary_public/cloudinary_public.dart';
+import 'package:e_commerce/models/orders.dart';
 import 'package:e_commerce/models/product.dart';
 import 'package:e_commerce/user/provider/user.dart';
 import 'package:e_commerce/utils/constants.dart';
@@ -98,6 +99,36 @@ class AdminServices {
       showSnackbar(e.toString(), context);
     }
     return productList;
+  }
+
+   Future<List<Order>> fetchAllOrders(BuildContext context) async {
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    List<Order> orderList = [];
+    try {
+      http.Response res =
+          await http.get(Uri.parse('${Constatnts.uri}/admin/get-orders'), headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        'x-auth-token': userProvider.user.token,
+      });
+
+      httpErrorHandle(
+        response: res,
+        context: context,
+        onSuccess: () {
+          for (int i = 0; i < jsonDecode(res.body).length; i++) {
+            orderList.add(
+              Order.fromJson(
+                jsonEncode(
+                  jsonDecode(res.body)[i],
+                ),
+              ),
+            );
+          }
+        },
+      );
+    } catch (e) {
+showSnackbar(e.toString(), context);    }
+    return orderList;
   }
 
 //delete product

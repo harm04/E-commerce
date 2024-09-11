@@ -1,4 +1,5 @@
 import 'package:e_commerce/user/provider/user.dart';
+import 'package:e_commerce/user/screens/address.dart';
 import 'package:e_commerce/user/screens/searchScreen.dart';
 import 'package:e_commerce/widgets/cartProductCard.dart';
 import 'package:e_commerce/widgets/cartSubtotal.dart';
@@ -22,6 +23,12 @@ class _CartState extends State<Cart> {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<UserProvider>(context).user;
+
+    int sum = 0;
+    user.cart
+        .map((e) => sum += e['quantity'] * e['product']['price'] as int)
+        .toList();
+
     return Scaffold(
       appBar: PreferredSize(
           preferredSize: const Size.fromHeight(70),
@@ -88,7 +95,7 @@ class _CartState extends State<Cart> {
                         ),
                         Expanded(
                             child: Text(
-                          'Delivery to ${user.firstname} ${user.lastname} : cdcdcdcc cdceefrffrfceceeveve vvee ecaddress',
+                          'Delivery to ${user.firstname} ${user.lastname} : ${user.address}',
                           style: const TextStyle(
                               color: Colors.black, fontSize: 14),
                           maxLines: 1,
@@ -113,13 +120,40 @@ class _CartState extends State<Cart> {
             const SizedBox(
               height: 10,
             ),
-            CartSubtotal(),
+          sum==0?const SizedBox():   const CartSubtotal(),
             ListView.builder(
-              shrinkWrap: true,
-              itemCount: user.cart.length,
-              itemBuilder: (context,index){
-              return CartProductCard(index: index);
-            })
+                shrinkWrap: true,
+                itemCount: user.cart.length,
+                itemBuilder: (context, index) {
+                  return CartProductCard(index: index);
+                }),
+          sum==0?const Text('Nothing in your cart'):  GestureDetector(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return Address(
+                    totalAmount: sum.toString(),
+                  );
+                }));
+              },
+              child: Card(
+                child: Container(
+                  height: 60,
+                  width: 180,
+                  decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: const Center(
+                    child: Padding(
+                      padding: EdgeInsets.all(15.0),
+                      child: Text(
+                        'Buy now',
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),

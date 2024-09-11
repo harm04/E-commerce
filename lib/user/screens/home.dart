@@ -1,5 +1,6 @@
 import 'package:e_commerce/user/provider/user.dart';
 import 'package:e_commerce/user/screens/searchScreen.dart';
+import 'package:e_commerce/widgets/changeAddress.dart';
 import 'package:e_commerce/widgets/crouselImages.dart';
 import 'package:e_commerce/widgets/dealOfDay.dart';
 import 'package:e_commerce/widgets/topCategories.dart';
@@ -21,6 +22,10 @@ class _HomeScreenState extends State<HomeScreen> {
       return SearchScreen(searchQuery: search);
     }));
   }
+ 
+
+  
+  
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       Expanded(
                           child: Text(
-                        'Delivery to ${user.firstname} ${user.lastname} : cdcdcdcc cdceefrffrfceceeveve vvee ecaddress',
+                        'Delivery to ${user.firstname} ${user.lastname} : ${user.address}',
                         style:
                             const TextStyle(color: Colors.black, fontSize: 14),
                         maxLines: 1,
@@ -102,11 +107,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       Padding(
                         padding: const EdgeInsets.only(left: 20.0),
                         child: GestureDetector(
-                            onTap: () {},
-                            child: const Icon(
-                              Icons.arrow_drop_down,
-                              color: Colors.black,
-                            )),
+                            onTap: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (context){
+                                return const ChangeAddress();
+                              }));
+                            },
+                            child: const Text('Change',style: TextStyle(color: Colors.blue,fontSize: 12),)),
                       )
                     ],
                   ),
