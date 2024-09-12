@@ -1,8 +1,11 @@
+import 'package:e_commerce/admin/services/adminServices.dart';
 import 'package:e_commerce/models/orders.dart';
+import 'package:e_commerce/user/provider/user.dart';
 import 'package:e_commerce/user/screens/searchScreen.dart';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class OrderDetails extends StatefulWidget {
   final Order order;
@@ -26,8 +29,23 @@ class _OrderDetailsState extends State<OrderDetails> {
     currentStep = widget.order.status;
   }
 
+//only for admin
+  AdminServices adminServices = AdminServices();
+  void changeOrderStatus(int status) {
+    adminServices.changeOrderStatus(
+        context: context,
+        order: widget.order,
+        status: status + 1,
+        onSuccess: () {
+          setState(() {
+            currentStep += 1;
+          });
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<UserProvider>(context).user;
     return Scaffold(
       appBar: PreferredSize(
           preferredSize: const Size.fromHeight(70),
@@ -172,40 +190,65 @@ class _OrderDetailsState extends State<OrderDetails> {
                     fontWeight: FontWeight.bold),
               ),
               Stepper(
-                  currentStep: currentStep,
-                  controlsBuilder: (context, details) {
-                    return const SizedBox();
-                  },
-                  steps: [
-                    Step(
-                        title: const Text('Pending'),
-                        content: const Text('Your order is processing'),
-                        isActive: currentStep > 0,
-                        state: currentStep > 0
-                            ? StepState.complete
-                            : StepState.indexed),
-                    Step(
-                        title: const Text('Pending'),
-                        content: const Text('Your order is processing'),
-                        isActive: currentStep > 1,
-                        state: currentStep > 1
-                            ? StepState.complete
-                            : StepState.indexed),
-                    Step(
-                        title: const Text('Pending'),
-                        content: const Text('Your order is processing'),
-                        isActive: currentStep > 2,
-                        state: currentStep > 2
-                            ? StepState.complete
-                            : StepState.indexed),
-                    Step(
-                        title: const Text('Pending'),
-                        content: const Text('Your order is processing'),
-                        isActive: currentStep >= 3,
-                        state: currentStep >= 3
-                            ? StepState.complete
-                            : StepState.indexed),
-                  ])
+                currentStep: currentStep,
+                controlsBuilder: (context, details) {
+                  if (user.type == 'admin') {
+                    return GestureDetector(
+                      onTap: () => changeOrderStatus(details.currentStep),
+                      child: const Card(
+                        child: SizedBox(
+                          height: 40,
+                          width: 100,
+                          child: const Center(child: Text('Done')),
+                        ),
+                      ),
+                    );
+                  }
+                  return const SizedBox();
+                },
+                steps: [
+                  Step(
+                    title: const Text('Pending'),
+                    content: const Text(
+                      'Your order is yet to be delivered',
+                    ),
+                    isActive: currentStep > 0,
+                    state: currentStep > 0
+                        ? StepState.complete
+                        : StepState.indexed,
+                  ),
+                  Step(
+                    title: const Text('Completed'),
+                    content: const Text(
+                      'Your order has been delivered, you are yet to sign.',
+                    ),
+                    isActive: currentStep > 1,
+                    state: currentStep > 1
+                        ? StepState.complete
+                        : StepState.indexed,
+                  ),
+                  Step(
+                    title: const Text('Received'),
+                    content: const Text(
+                      'Your order has been delivered and signed by you.',
+                    ),
+                    isActive: currentStep > 2,
+                    state: currentStep > 2
+                        ? StepState.complete
+                        : StepState.indexed,
+                  ),
+                  Step(
+                    title: const Text('Delivered'),
+                    content: const Text(
+                      'Your order has been delivered and signed by you!',
+                    ),
+                    isActive: currentStep > 3,
+                    state: currentStep > 3
+                        ? StepState.complete
+                        : StepState.indexed,
+                  ),
+                ],
+              )
             ],
           ),
         ),

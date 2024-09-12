@@ -1,4 +1,5 @@
 import 'package:e_commerce/admin/screens/adminHome.dart';
+import 'package:e_commerce/admin/screens/analytics.dart';
 import 'package:e_commerce/admin/screens/inbox.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,11 +15,7 @@ class _AdminBottomBArState extends State<AdminBottomBAr> {
   int _page = 0;
   late PageController pageController;
 
-  List<Widget> pageList = [
-    const AdminHome(),
-    const Center(child: Text('3')),
-    const Inbox()
-  ];
+  List<Widget> pageList = [const AdminHome(), const Analytics(), const Inbox()];
 
   @override
   void initState() {

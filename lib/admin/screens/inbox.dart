@@ -1,5 +1,6 @@
 import 'package:e_commerce/admin/services/adminServices.dart';
 import 'package:e_commerce/models/orders.dart';
+import 'package:e_commerce/user/screens/profile/orderDetails.dart';
 import 'package:e_commerce/widgets/loader.dart';
 import 'package:e_commerce/widgets/productCard.dart';
 import 'package:flutter/cupertino.dart';
@@ -29,17 +30,24 @@ class _InboxState extends State<Inbox> {
   @override
   Widget build(BuildContext context) {
     return orders == null
-        ? Center(child: const Loader())
+        ? const Center(child: Loader())
         : GridView.builder(
             itemCount: orders!.length,
-             scrollDirection: Axis.vertical,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2, childAspectRatio: 0.91),
+            scrollDirection: Axis.vertical,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2, childAspectRatio: 0.91),
             itemBuilder: (context, index) {
               final orderData = orders![index];
-              return SizedBox(
-                height: 140,
-                child: ProductCard(image: orderData.products[0].images[0]),
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return OrderDetails(order: orderData);
+                  }));
+                },
+                child: SizedBox(
+                  height: 140,
+                  child: ProductCard(image: orderData.products[0].images[0]),
+                ),
               );
             });
   }
