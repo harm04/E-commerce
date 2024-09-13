@@ -31,7 +31,8 @@ migrate_working_dir/
 .pub/
 /build/
 /lib/utils/constants.dart
-/server/node_modules
+server/node_modules
+
 
 # Symbolication related
 app.*.symbols
