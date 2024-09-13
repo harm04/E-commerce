@@ -1,5 +1,4 @@
 import 'package:e_commerce/user/provider/user.dart';
-import 'package:e_commerce/user/screens/home.dart';
 import 'package:e_commerce/user/screens/profile/myOrderScreen.dart';
 import 'package:e_commerce/user/services/address.dart';
 import 'package:e_commerce/utils/snackbar.dart';
@@ -74,7 +73,6 @@ class _AddressState extends State<Address> {
     } else {
       showSnackbar('Error', context);
     }
-    print(addressTOBeUsed);
   }
 
   @override
@@ -188,28 +186,17 @@ class _AddressState extends State<Address> {
                     )),
               ],
             ),
-            // GooglePayButton(
-            //     onPressed: () => payPressed(address),
-            //     height: RawGooglePayButton.defaultButtonHeight,
-            //     type: GooglePayButtonType.buy,
-            //     paymentConfiguration:
-            //         PaymentConfiguration.fromJsonString(defaultGooglePay),
-            //     onPaymentResult: onGpayresult(),
-            //     loadingIndicator: const Center(
-            //       child: CircularProgressIndicator(),
-            //     ),
-            //     paymentItems: paymentItems)
-
+            
             GestureDetector(
               onTap: () async {
-                print(address);
                 await payPressed(address);
                 await onGpayresult();
                 Navigator.push(
+                  // ignore: use_build_context_synchronously
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return MyOrderScreen();
+                      return const MyOrderScreen();
                     },
                   ),
                 );
